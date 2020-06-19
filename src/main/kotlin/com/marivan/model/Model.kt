@@ -1,4 +1,4 @@
-package com.example.demo.model
+package com.marivan.model
 
 data class Update(
         val message: Message?

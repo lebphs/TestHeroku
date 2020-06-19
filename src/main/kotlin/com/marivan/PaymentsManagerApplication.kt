@@ -1,11 +1,11 @@
-package com.example.demo
+package com.marivan
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DemoApplication
+class PaymentsManagerApplication
 
 fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
+	runApplication<PaymentsManagerApplication>(*args)
 }

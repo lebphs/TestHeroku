@@ -1,23 +1,18 @@
-package com.example.demo
+package com.marivan
 
-import com.example.demo.model.Chat
-import com.example.demo.model.Message
-import com.example.demo.model.Update
+import com.marivan.model.Update
 import com.mashape.unirest.http.Unirest
 import com.mashape.unirest.http.exceptions.UnirestException
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpMethod
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.client.RestTemplate
 import java.util.logging.Level
 import java.util.logging.Logger
 
 @RestController
-class TestRestService {
+class WebhookService {
     private val logger: Logger = Logger.getLogger("[EchoBot]")
 
     companion object {
@@ -30,7 +25,7 @@ class TestRestService {
     lateinit var token: String
 
     @GetMapping
-    fun hello():String{
+    fun hello(): String {
         return "Hello word!";
     }
 
@@ -52,6 +47,7 @@ class TestRestService {
     } catch (e: UnirestException) {
         logger.log(Level.SEVERE, "Can not send START response!", e)
     }
+
     private fun onEchoCommand(chatId: Long, text: String) = try {
         val response = text.subSequence(ECHO_COMMAND.length, text.length).trim().toString()
         sendMessage(chatId, response)
