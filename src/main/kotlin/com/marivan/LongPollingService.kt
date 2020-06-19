@@ -1,6 +1,7 @@
 package com.marivan
 
 import com.elbekD.bot.Bot
+import com.elbekD.bot.feature.chain.chain
 import com.elbekD.bot.types.InlineKeyboardButton
 import com.elbekD.bot.types.InlineKeyboardMarkup
 import org.springframework.beans.factory.annotation.Value
@@ -27,6 +28,10 @@ class LongPollingService {
         bot.onCommand("/test") { msg, _ ->
             bot.sendMessage(msg.chat.id, "Hello World!")
         }
+
+        bot.chain("test"){msg -> bot.sendMessage(msg.chat.id, "What name category")}
+                .then{msg -> bot.sendMessage(msg.chat.id, "kek")}
+                .build()
 
         bot.onCommand("/buttons"){msg, _ ->
             val inlineKeyboardButton1 = InlineKeyboardButton("Button1", callback_data = "1")
