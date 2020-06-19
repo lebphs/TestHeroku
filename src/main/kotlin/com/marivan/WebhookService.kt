@@ -71,7 +71,7 @@ class WebhookService {
     }
 
     private fun addCategory(chatId: Long, text: String) = try {
-        categoryRepository.save(Categories(name = text.split("_")[1].trim()))
+        categoryRepository.save(Categories(name = text.split(" ")[1].trim()))
         sendMessage(chatId, "Category successfully added!")
     } catch (e: UnirestException) {
         logger.log(Level.SEVERE, "Can not send START response!", e)
