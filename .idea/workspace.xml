@@ -19,8 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4c414d3-0764-4b8f-9742-5fe9c672557c" name="Default Changelist" comment="add expenses">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a4c414d3-0764-4b8f-9742-5fe9c672557c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/marivan/services/ExpensesServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/marivan/services/ExpensesServiceImpl.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +144,7 @@
       <workItem from="1592506763931" duration="7094000" />
       <workItem from="1592588860586" duration="6763000" />
       <workItem from="1592596551697" duration="964000" />
-      <workItem from="1592597534738" duration="8298000" />
+      <workItem from="1592597534738" duration="8716000" />
     </task>
     <task id="LOCAL-00001" summary="add jpa">
       <created>1592591443657</created>
@@ -188,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592663323184</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix sql">
+      <created>1592663697546</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592663697546</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +220,8 @@
     <MESSAGE value="fix add category" />
     <MESSAGE value="add expenses" />
     <MESSAGE value="sum expenses same categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="sum expenses same categories" />
+    <MESSAGE value="fix sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sql" />
   </component>
   <component name="WindowStateProjectService">
     <state x="351" y="0" key="#PaymentManagerApplicationKt/0.0.1280.680@0.0.1280.680" timestamp="1592506187729" />
@@ -225,10 +233,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="420" y="119" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1592591243033" />
-    <state x="180" y="0" key="CommitChangelistDialog2" timestamp="1592663321947">
+    <state x="180" y="0" key="CommitChangelistDialog2" timestamp="1592663696049">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="180" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1592663321947" />
+    <state x="180" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1592663696049" />
     <state width="701" height="438" key="DebuggerActiveHint" timestamp="1592515076293">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -298,10 +306,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1592317110260" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1592663325677">
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1592663699664">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1592663325677" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1592663699664" />
     <state x="192" y="195" width="1095" height="492" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1592594694465">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -311,10 +319,10 @@
     </state>
     <state x="78" y="77" width="1125" height="527" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1592513424561" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1592317110629" />
-    <state x="450" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592598838897">
+    <state x="450" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592664044654">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="450" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1592598838897" />
+    <state x="450" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1592664044654" />
     <state x="347" y="73" width="792" height="534" key="find.popup" timestamp="1592662781326">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

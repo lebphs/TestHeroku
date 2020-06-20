@@ -31,7 +31,7 @@ class ExpensesServiceImpl {
                 .values
                 .map {
                     it.reduce{
-                        acc, item -> Expenses(amount = acc.amount + item.amount ,  category_id = item.category_id )
+                        acc, item -> Expenses(amount = acc.amount.toInt().plus(item.amount.toInt()).toString() ,  category_id = item.category_id )
                     }
                 }
         return expenses
