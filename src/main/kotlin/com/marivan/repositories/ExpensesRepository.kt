@@ -9,6 +9,6 @@ import java.util.*
 @Repository
 interface ExpensesRepository  : CrudRepository<Expenses, Long> {
 
-    @Query("SELECT id, name, cate FROM Expenses WHERE date > ?1 and date < ?2", nativeQuery = true)
+    @Query("SELECT * FROM Expenses WHERE date > ?1 and date < ?2", nativeQuery = true)
     fun getAllExpensesForMonth(start:Date, end: Date) : List<Expenses>
 }
