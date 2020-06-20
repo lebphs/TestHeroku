@@ -75,7 +75,7 @@ class WebhookService {
 
     private fun getAllCategories(chatId: Long) = try {
         val categories:List<Categories> = categoryServiceImpl.getAllCategories();
-        telegramBotClient.sendMessage(chatId,"Available categories:\n" + categories.joinToString { c -> c.name + "\n" });
+        telegramBotClient.sendMessage(chatId,"Available categories:\n" + categories.joinToString(separator = "\n", transform = { c -> c.name}));
     } catch (e: UnirestException) {
         logger.log(Level.SEVERE, "Can not send CATEGORIES response!", e)
     }
@@ -88,7 +88,7 @@ class WebhookService {
     }
 
     private fun getExpensesForMonth(chatId: Long) = try {
-        telegramBotClient.sendMessage(chatId,  expensesServiceImpl.getAllExpensesForMonth().joinToString { e -> e.category_id.name + " - " + e.amount })
+        telegramBotClient.sendMessage(chatId,  expensesServiceImpl.getAllExpensesForMonth().joinToString(separator = "\n", transform = { e -> e.category_id.name + " - " + e.amount}))
     } catch (e: UnirestException) {
         logger.log(Level.SEVERE, "Can not send EXPENSES response!", e)
     }

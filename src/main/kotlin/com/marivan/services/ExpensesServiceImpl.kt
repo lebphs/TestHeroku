@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
 import java.util.logging.Logger
+import kotlin.collections.HashMap
 
 
 @Service
@@ -25,7 +26,15 @@ class ExpensesServiceImpl {
         val firstDay = calendar.time
         calendar[Calendar.DATE] = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         val lastDay = calendar.time
-        return expensesRepository.getAllExpensesForMonth(firstDay, lastDay);
+        val expenses = expensesRepository.getAllExpensesForMonth(firstDay, lastDay)
+                .groupBy {it.category_id.name}
+                .values
+                .map {
+                    it.reduce{
+                        acc, item -> Expenses(amount = acc.amount + item.amount ,  category_id = item.category_id )
+                    }
+                }
+        return expenses
     }
 
     fun addExpenses(text:String) {
