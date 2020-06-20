@@ -9,7 +9,7 @@ class Expenses(
         @GeneratedValue
         var id: Long? = null,
         var amount: String,
-        var date: Date? = null,
+        var date: Date? = Date(),
         @ManyToOne(cascade = [CascadeType.ALL])
         var category_id: Categories
 )
