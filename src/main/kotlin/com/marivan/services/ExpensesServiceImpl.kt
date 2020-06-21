@@ -6,6 +6,7 @@ import com.marivan.repositories.ExpensesRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
+import java.util.logging.Level
 import java.util.logging.Logger
 
 
@@ -32,7 +33,7 @@ class ExpensesServiceImpl {
                     it.reduce{
                         acc, item -> Expenses(amount = acc.amount.toInt().plus(item.amount.toInt()).toString() ,  category_id = item.category_id )
                     }
-                }
+                }.orEmpty();
         return expenses
     }
 
@@ -41,6 +42,9 @@ class ExpensesServiceImpl {
         val amount = text.split(" ")[1];
 
         val category: Categories = categoryServiceImpl.getCategoryByName(categoryName)
+        if(category == null){
+            logger.log(Level.SEVERE, "Not found category with name $categoryName")
+        }
         expensesRepository.save(Expenses(amount = amount, category_id = category))
 
 

@@ -1,6 +1,7 @@
 package com.marivan
 
 import com.marivan.entity.Categories
+import com.marivan.entity.Expenses
 import com.marivan.model.Command
 import com.marivan.model.Update
 import com.marivan.services.CategoryServiceImpl
@@ -91,7 +92,13 @@ class WebhookService {
     }
 
     private fun getExpensesForMonth(chatId: Long) = try {
-        telegramBotClient.sendMessage(chatId,  expensesServiceImpl.getAllExpensesForMonth().joinToString(separator = "\n", transform = { e -> e.category_id.name + " - " + e.amount}))
+        val expenses: List<Expenses> = expensesServiceImpl.getAllExpensesForMonth();
+
+        if(expenses.isNotEmpty()){
+            telegramBotClient.sendMessage(chatId, expenses.joinToString(separator = "\n", transform = { e -> e.category_id.name + " - " + e.amount}))
+        } else{
+            telegramBotClient.sendMessage(chatId, "Not found expenses for a month");
+        }
     } catch (e: UnirestException) {
         logger.log(Level.SEVERE, "Can not send EXPENSES response!", e)
     }
@@ -105,6 +112,7 @@ class WebhookService {
 
     @PostConstruct
     private fun setCommands() = try {
+        logger.log(Level.INFO, "Set commands")
         val commands:List<Command> =  CommandsEnum.values().asList().stream().map{ c ->Command(c.commands, c.name)}.collect(Collectors.toList())
         telegramBotClient.setCommands(commands)
     } catch (e: UnirestException) {
