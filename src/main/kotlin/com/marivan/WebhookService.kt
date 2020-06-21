@@ -15,16 +15,13 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.logging.Level
 import java.util.logging.Logger
 import java.util.stream.Collectors
+import javax.annotation.PostConstruct
 
 @RestController
 class WebhookService {
     private val logger: Logger = Logger.getLogger("[EchoBot]")
 
     private val API_ENDPOINT = "https://api.telegram.org/bot"
-
-    constructor(){
-        setCommands()
-    }
 
     companion object {
         private val START_COMMAND = "/start"
@@ -106,6 +103,7 @@ class WebhookService {
         logger.log(Level.SEVERE, "Can not send ADD_EXPENSES response!", e)
     }
 
+    @PostConstruct
     private fun setCommands() = try {
         val commands:List<Command> =  CommandsEnum.values().asList().stream().map{ c ->Command(c.commands, c.name)}.collect(Collectors.toList())
         telegramBotClient.setCommands(commands)
