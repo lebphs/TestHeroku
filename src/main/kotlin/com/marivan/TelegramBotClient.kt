@@ -1,5 +1,6 @@
 package com.marivan
 
+import com.marivan.model.Command
 import com.mashape.unirest.http.Unirest
 import com.mashape.unirest.http.exceptions.UnirestException
 import org.springframework.beans.factory.annotation.Value
@@ -19,6 +20,13 @@ class TelegramBotClient {
         Unirest.post(API_ENDPOINT + token + "/sendMessage")
                 .field("chat_id", chatId)
                 .field("text", text)
+                .asJson()
+    }
+
+    @Throws(UnirestException::class)
+    fun setCommands(commands:List<Command>) {
+        Unirest.post(API_ENDPOINT + token + "/setMyCommands")
+                .field("commands", commands)
                 .asJson()
     }
 }

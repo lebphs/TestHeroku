@@ -1,11 +1,10 @@
 package com.marivan
 
 import com.marivan.entity.Categories
+import com.marivan.model.Command
 import com.marivan.model.Update
-import com.marivan.repositories.CategoryRepository
 import com.marivan.services.CategoryServiceImpl
 import com.marivan.services.ExpensesServiceImpl
-import com.mashape.unirest.http.Unirest
 import com.mashape.unirest.http.exceptions.UnirestException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -15,13 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import java.util.logging.Level
 import java.util.logging.Logger
+import java.util.stream.Collectors
 
 @RestController
 class WebhookService {
     private val logger: Logger = Logger.getLogger("[EchoBot]")
 
+    private val API_ENDPOINT = "https://api.telegram.org/bot"
+
+    constructor(){
+        setCommands()
+    }
+
     companion object {
-        private val API_ENDPOINT = "https://api.telegram.org/bot"
         private val START_COMMAND = "/start"
         private val ECHO_COMMAND = "/echo"
         private val GET_ALL_CATEGORIES = "/categories"
@@ -39,6 +44,7 @@ class WebhookService {
     @Autowired
     lateinit var telegramBotClient: TelegramBotClient;
 
+
     @GetMapping
     fun hello() = "PaymentManager working!";
 
@@ -49,11 +55,11 @@ class WebhookService {
             val chatId = update.message.chat.id
             val text = update.message.text
             when {
-                text?.startsWith(START_COMMAND) == true -> onStartCommand(chatId)
-                text?.startsWith(ECHO_COMMAND) == true -> onEchoCommand(chatId, text)
-                text?.startsWith(GET_ALL_CATEGORIES) == true -> getAllCategories(chatId)
-                text?.startsWith(ADD_CATEGORIES) == true -> addCategory(chatId, text)
-                text?.startsWith(GET_EXPENSES) == true -> getExpensesForMonth(chatId)
+                text?.startsWith(CommandsEnum.START_COMMAND.commands) == true -> onStartCommand(chatId)
+                text?.startsWith(CommandsEnum.ECHO_COMMAND.commands) == true -> onEchoCommand(chatId, text)
+                text?.startsWith(CommandsEnum.GET_ALL_CATEGORIES.commands) == true -> getAllCategories(chatId)
+                text?.startsWith(CommandsEnum.ADD_CATEGORIES.commands) == true -> addCategory(chatId, text)
+                text?.startsWith(CommandsEnum.GET_EXPENSES.commands) == true -> getExpensesForMonth(chatId)
                 else -> addExpenses(chatId, text!!);
             }
 
@@ -100,4 +106,10 @@ class WebhookService {
         logger.log(Level.SEVERE, "Can not send ADD_EXPENSES response!", e)
     }
 
+    private fun setCommands() = try {
+        val commands:List<Command> =  CommandsEnum.values().asList().stream().map{ c ->Command(c.commands, c.name)}.collect(Collectors.toList())
+        telegramBotClient.setCommands(commands)
+    } catch (e: UnirestException) {
+        logger.log(Level.SEVERE, "Can not send SET_COMMANDS response!", e)
+    }
 }

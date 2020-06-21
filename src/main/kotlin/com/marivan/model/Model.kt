@@ -10,3 +10,8 @@ data class Message(
 data class Chat(
         val id: Long
 )
+
+data class Command(
+        val command: String,
+        val description: String
+)
